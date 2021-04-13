@@ -1,0 +1,2941 @@
+OTAS:
+  walk:
+  - 1.3.6.1
+  metrics:
+  - name: sysDescr
+    oid: 1.3.6.1.2.1.1.1
+    type: DisplayString
+    help: Hostname of the Archive Server 
+  - name: otacServicesStatus
+    oid: 1.3.6.1.4.1.16.73.1.0.0
+    type: DisplayString
+    help: Check the Services of the Archive Center
+    regex_extracts: 
+      '': 
+        - regex: '.*\w+@(\d+) .*' 
+          value: '$1'
+  - name: otacServicesjds
+    oid: 1.3.6.1.4.1.16.73.1.1.0
+    type: DisplayString 
+    help: Check the Services of the Archive Center jds 
+    regex_extracts: 
+      'status': 
+        - regex: '.*\w+\-\w+\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1' 
+  - name: otacServicesadmsrv
+    oid: 1.3.6.1.4.1.16.73.1.2.0
+    type: DisplayString 
+    help: Check the Services of the Archive Center admsrv
+    regex_extracts: 
+      'status': 
+        - regex: '.*\w+\-\w+\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacServicesbksrv
+    oid: 1.3.6.1.4.1.16.73.1.3.0
+    type: DisplayString 
+    help: Check the Services of the Archive Center bksrv
+    regex_extracts: 
+      'status': 
+        - regex: '.*\w+\-\w+\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacServicesauxsrvr
+    oid: 1.3.6.1.4.1.16.73.1.4.0
+    type: DisplayString 
+    help: Check the Services of the Archive Center auxsrvr
+    regex_extracts: 
+      'status': 
+        - regex: '.*\w+\-\w+\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1' 
+  - name: otacServicesjbd
+    oid: 1.3.6.1.4.1.16.73.1.5.0
+    type: DisplayString 
+    help: Check the Services of the Archive Center jbd
+    regex_extracts: 
+      'status': 
+        - regex: '.*\w+\-\w+\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacServicesvmig
+    oid: 1.3.6.1.4.1.16.73.1.6.0
+    type: DisplayString 
+    help: Check the Services of the Archive Center vmig
+    regex_extracts: 
+      'status': 
+        - regex: '.*\w+\-\w+\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacPoolsandVolumes
+    oid: 1.3.6.1.4.1.16.73.1.7.0
+    type: DisplayString 
+    help: Check the Pools and Volumes from Archive Center
+    regex_extracts: 
+      'status': 
+        - regex: '.*Pools and Volumes\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacPVUnavailableVolumes
+    oid: 1.3.6.1.4.1.16.73.1.8.0
+    type: DisplayString 
+    help: Check Unavailable Volumes from the Pools and Volumes from Archive Center
+    regex_extracts: 
+      'status': 
+        - regex: '.*Pools and Volumes-UnavailableVolumes\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+      'count':
+        - regex: '.*:(\d+).*'
+          value: '$1'
+  - name: otacStorageManager
+    oid: 1.3.6.1.4.1.16.73.1.9.0
+    type: DisplayString 
+    help: Check Storage Manager from Archive Center
+    regex_extracts: 
+      'status': 
+        - regex: '.*Storage Manager\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacDatabase
+    oid: 1.3.6.1.4.1.16.73.1.10.0
+    type: DisplayString 
+    help: Check Database from Archive Center
+    regex_extracts: 
+      'status': 
+        - regex: '.*Database\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacDatabaseTableSpaceErrAuxSrv
+    oid: 1.3.6.1.4.1.16.73.1.11.0
+    type: DisplayString 
+    help: Check Database Table Space Err Aux Srv from Archive Center
+    regex_extracts: 
+      'status': 
+        - regex: '.*Database-TableSpaceErrAuxSrv\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacDatabaseTableSpaceErrBKUP
+    oid: 1.3.6.1.4.1.16.73.1.12.0
+    type: DisplayString 
+    help: Check Database Table Space Err Bkup from Archive Center
+    regex_extracts: 
+      'status': 
+        - regex: '.*Database-TableSpaceErrBKUP\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacDatabaseTableSpaceErrVMIG
+    oid: 1.3.6.1.4.1.16.73.1.13.0
+    type: DisplayString 
+    help: Check Database Table Space Err VMIG from Archive Center 1.3.6.1.4.1.16.73.1.13.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*Database-TableSpaceErrVMIG\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacPoolsandVolumes01
+    oid: 1.3.6.1.4.1.16.73.1.14.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.14.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'
+  - name: otacPoolsandVolumes02
+    oid: 1.3.6.1.4.1.16.73.1.15.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.15.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'
+  - name: otacPoolsandVolumes03
+    oid: 1.3.6.1.4.1.16.73.1.16.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.16.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'
+  - name: otacPoolsandVolumes04
+    oid: 1.3.6.1.4.1.16.73.1.17.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.17.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'
+  - name: otacPoolsandVolumes05
+    oid: 1.3.6.1.4.1.16.73.1.18.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.18.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'
+  - name: otacPoolsandVolumes06
+    oid: 1.3.6.1.4.1.16.73.1.19.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.19.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'
+  - name: otacPoolsandVolumes07
+    oid: 1.3.6.1.4.1.16.73.1.20.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.19.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'    
+  version: 1
+  max_repetitions: 25
+  retries: 0
+  timeout: 10s
+  auth:
+    community: public
+# WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
+LIVELINK-MIB:
+  walk:
+  - 1.3.6.1.4.1.14876.2.1 
+  #Infos unter: https://handel.atlassian.net/wiki/spaces/otwatch/pages/462946314
+  - 1.3.6.1.4.1.14876.3.1
+  - 1.3.6.1.4.1.14876.4.1.1
+  - 1.3.6.1.4.1.14876.4.2.1
+  - 1.3.6.1.4.1.14876.5.1.1
+  - 1.3.6.1.4.1.14876.6.1
+  metrics:
+  - name: clusterIndex
+    oid: 1.3.6.1.4.1.14876.2.1.1.1
+    type: gauge
+    help: The index of the cluster in the Cluster Table - 1.3.6.1.4.1.14876.2.1.1.1
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    lookups:
+    - labels:
+      - clusterIndex
+      labelname: clusterIndex
+      oid: 1.3.6.1.4.1.14876.2.1.1.1
+      type: gauge
+  - name: clusterDisplayName 
+    oid: 1.3.6.1.4.1.14876.2.1.1.2
+    type: DisplayString
+    help: The given name of the Cluster - 1.3.6.1.4.1.14876.2.1.1.2
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.      
+  - name: clusterInstanceDisplayNames
+    oid: 1.3.6.1.4.1.14876.2.1.1.3
+    type: DisplayString
+    help: The list of DisplayNames given to the instances in the Cluster - 1.3.6.1.4.1.14876.2.1.1.3
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: clusterDate
+    oid: 1.3.6.1.4.1.14876.2.1.1.4
+    type: DisplayString
+    help: The date of this monitoring request against a Livelink instance in the Cluster - 1.3.6.1.4.1.14876.2.1.1.4
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.      
+  - name: clusterTime
+    oid: 1.3.6.1.4.1.14876.2.1.1.5
+    type: DisplayString
+    help: The time of the monitoring request against a Livelink instance in the Cluster - 1.3.6.1.4.1.14876.2.1.1.5
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.      
+  - name: clusterTimeZone
+    oid: 1.3.6.1.4.1.14876.2.1.1.6
+    type: DisplayString
+    help: The time zone of the Monitoring Agent monitoring the Cluster - 1.3.6.1.4.1.14876.2.1.1.6
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.      
+  - name: clusterNumThreads
+    oid: 1.3.6.1.4.1.14876.2.1.1.7
+    type: DisplayString
+    help: The total number of Livelink threads running in this Cluster - 1.3.6.1.4.1.14876.2.1.1.7
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterNumActiveThreads
+    oid: 1.3.6.1.4.1.14876.2.1.1.8
+    type: DisplayString
+    help: The number of currently active threads in this Cluster - 1.3.6.1.4.1.14876.2.1.1.8
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterNumIdleThreads
+    oid: 1.3.6.1.4.1.14876.2.1.1.9
+    type: DisplayString
+    help: The number of currently idle threads in this Cluster - 1.3.6.1.4.1.14876.2.1.1.9
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterNumReq
+    oid: 1.3.6.1.4.1.14876.2.1.1.10
+    type: DisplayString
+    help: The total number of requests serviced by this Cluster - 1.3.6.1.4.1.14876.2.1.1.10
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterQueueDepthInMax
+    oid: 1.3.6.1.4.1.14876.2.1.1.11
+    type: DisplayString
+    help: The maximum number of requests in the Queue when any request started processing. - 1.3.6.1.4.1.14876.2.1.1.11
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterQueueDepthOutMax
+    oid: 1.3.6.1.4.1.14876.2.1.1.12
+    type: DisplayString
+    help: The maximum number of requests in the Queue when any request ended processing. - 1.3.6.1.4.1.14876.2.1.1.12
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterQueueAvgTime
+    oid: 1.3.6.1.4.1.14876.2.1.1.13
+    type: DisplayString
+    help: The average time that a request serviced by this Cluster spent queuing - 1.3.6.1.4.1.14876.2.1.1.13
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterQueueMinTime
+    oid: 1.3.6.1.4.1.14876.2.1.1.14
+    type: DisplayString
+    help: The mimimal amount of time spent queuing by a request serviced by this Cluster - 1.3.6.1.4.1.14876.2.1.1.14
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterQueueMaxTime
+    oid: 1.3.6.1.4.1.14876.2.1.1.15
+    type: DisplayString
+    help: The maximum amount of time spent queuing by a request serviced by this Cluster - 1.3.6.1.4.1.14876.2.1.1.15
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterRunAvgTime
+    oid: 1.3.6.1.4.1.14876.2.1.1.16
+    type: DisplayString
+    help: The average run time for requests serviced by this Cluster - 1.3.6.1.4.1.14876.2.1.1.16
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterRunMinTime
+    oid: 1.3.6.1.4.1.14876.2.1.1.17
+    type: DisplayString
+    help: The minimum run time for requests serviced by this Cluster - 1.3.6.1.4.1.14876.2.1.1.17
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterRunMaxTime
+    oid: 1.3.6.1.4.1.14876.2.1.1.18
+    type: DisplayString
+    help: The maximum run time for requests serviced by this Cluster - 1.3.6.1.4.1.14876.2.1.1.18
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterTotalQueueTime
+    oid: 1.3.6.1.4.1.14876.2.1.1.19
+    type: DisplayString
+    help: The total amount of time requests spent queuing in this Cluster - 1.3.6.1.4.1.14876.2.1.1.19
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterTotalProcessingTime
+    oid: 1.3.6.1.4.1.14876.2.1.1.20
+    type: DisplayString
+    help: The total amount of time this Cluster spent queuing requests - 1.3.6.1.4.1.14876.2.1.1.20
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterTotalRunTime
+    oid: 1.3.6.1.4.1.14876.2.1.1.21
+    type: DisplayString
+    help: The total amount of time this Cluster spent running requests - 1.3.6.1.4.1.14876.2.1.1.21
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: clusterNumDebugExceptions
+    oid: 1.3.6.1.4.1.14876.2.1.1.22
+    type: DisplayString
+    help: The number of exceptions raised in this Cluster - 1.3.6.1.4.1.14876.2.1.1.22
+    indexes:
+    - labelname: clusterIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.2 # OID to look under.
+         labelname: clusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [clusterIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.2.1.1.3 # OID to look under.
+         labelname: clusterinstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+          
+  - name: instanceIndex
+    oid: 1.3.6.1.4.1.14876.3.1.1.1
+    type: gauge
+    help: The index of the instance. - 1.3.6.1.4.1.14876.3.1.1.1
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    lookups:
+    - labels:
+      - instanceIndex
+      labelname: instanceIndex
+      oid: 1.3.6.1.4.1.14876.3.1.1.1
+      type: gauge
+  - name: instanceClusterDisplayName
+    oid: 1.3.6.1.4.1.14876.3.1.1.2
+    type: DisplayString
+    help: The name of the cluster to which this instance belongs. - 1.3.6.1.4.1.14876.3.1.1.2
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.       
+  - name: instanceDisplayName
+    oid: 1.3.6.1.4.1.14876.3.1.1.3
+    type: DisplayString
+    help: The display name of the instance. - 1.3.6.1.4.1.14876.3.1.1.3
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceIpAddress
+    oid: 1.3.6.1.4.1.14876.3.1.1.4
+    type: DisplayString
+    help: The IP address of the instance. - 1.3.6.1.4.1.14876.3.1.1.4
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instancePort
+    oid: 1.3.6.1.4.1.14876.3.1.1.5
+    type: DisplayString
+    help: The port number that this instance is accepting requests on. - 1.3.6.1.4.1.14876.3.1.1.5
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceDate
+    oid: 1.3.6.1.4.1.14876.3.1.1.6
+    type: DisplayString
+    help: The date of the last instance request. - 1.3.6.1.4.1.14876.3.1.1.6
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceTime
+    oid: 1.3.6.1.4.1.14876.3.1.1.7
+    type: DisplayString
+    help: The time of the last instance request. - 1.3.6.1.4.1.14876.3.1.1.7
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceTimeZone
+    oid: 1.3.6.1.4.1.14876.3.1.1.8
+    type: DisplayString
+    help: The time zone of the last instance request. - 1.3.6.1.4.1.14876.3.1.1.8
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceNumThreads
+    oid: 1.3.6.1.4.1.14876.3.1.1.9
+    type: DisplayString
+    help: The total number of threads this instance is running. - 1.3.6.1.4.1.14876.3.1.1.9
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceNumActiveThreads
+    oid: 1.3.6.1.4.1.14876.3.1.1.10
+    type: DisplayString
+    help: The number of threads currently servicing requests on this instance. - 1.3.6.1.4.1.14876.3.1.1.10
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceNumIdleThreads
+    oid: 1.3.6.1.4.1.14876.3.1.1.11
+    type: DisplayString
+    help: The number of threads currently idle on this instance. - 1.3.6.1.4.1.14876.3.1.1.11
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceNumReq
+    oid: 1.3.6.1.4.1.14876.3.1.1.12
+    type: DisplayString
+    help: The total number of requests this instance has processed. - 1.3.6.1.4.1.14876.3.1.1.12
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceQueueDepthInMax
+    oid: 1.3.6.1.4.1.14876.3.1.1.13
+    type: DisplayString
+    help: The maximum number of requests in the Queue when any request started processing. - 1.3.6.1.4.1.14876.3.1.1.13
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceQueueDepthOutMax
+    oid: 1.3.6.1.4.1.14876.3.1.1.14
+    type: DisplayString
+    help: The maximum number of requests in the Queue when any request was completed processing. - 1.3.6.1.4.1.14876.3.1.1.14
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceQueueAvgTime
+    oid: 1.3.6.1.4.1.14876.3.1.1.15
+    type: DisplayString
+    help: The average time in seconds a request spends queuing. - 1.3.6.1.4.1.14876.3.1.1.15
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceQueueMinTime
+    oid: 1.3.6.1.4.1.14876.3.1.1.16
+    type: DisplayString
+    help: The minimum amount of time in seconds a request has spent queuing - 1.3.6.1.4.1.14876.3.1.1.16
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceQueueMaxTime
+    oid: 1.3.6.1.4.1.14876.3.1.1.17
+    type: DisplayString
+    help: The maximum amount of time in seconds a request has spent queuing. - 1.3.6.1.4.1.14876.3.1.1.17
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceRunAvgTime
+    oid: 1.3.6.1.4.1.14876.3.1.1.18
+    type: DisplayString
+    help: The average amount of time in seconds for a request to be processed. - 1.3.6.1.4.1.14876.3.1.1.18
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceRunMinTime
+    oid: 1.3.6.1.4.1.14876.3.1.1.19
+    type: DisplayString
+    help: The minimum amount of time in seconds for a request to be processed. - 1.3.6.1.4.1.14876.3.1.1.19
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceRunMaxTime
+    oid: 1.3.6.1.4.1.14876.3.1.1.20
+    type: DisplayString
+    help: The maximum amount of time in seconds for a request to be processed. - 1.3.6.1.4.1.14876.3.1.1.20
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceTotalQueueTime
+    oid: 1.3.6.1.4.1.14876.3.1.1.21
+    type: DisplayString
+    help: The total time in seconds that the instance has spent queuing requests. - 1.3.6.1.4.1.14876.3.1.1.21
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceTotalProcessingTime
+    oid: 1.3.6.1.4.1.14876.3.1.1.22
+    type: DisplayString
+    help: The total time in seconds that the instance has spent processing requests. - 1.3.6.1.4.1.14876.3.1.1.22
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceTotalRunTime
+    oid: 1.3.6.1.4.1.14876.3.1.1.23
+    type: DisplayString
+    help: The total time in seconds that the instance has spent running requests. - 1.3.6.1.4.1.14876.3.1.1.23
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceNumDebugExceptions
+    oid: 1.3.6.1.4.1.14876.3.1.1.24
+    type: DisplayString
+    help: The number of exceptions raised in this instance. - 1.3.6.1.4.1.14876.3.1.1.24
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.           
+  - name: instanceStatus
+    oid: 1.3.6.1.4.1.14876.3.1.1.25
+    type: DisplayString
+    help: The current status of this instance. - 1.3.6.1.4.1.14876.3.1.1.25
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+         - regex: 'OK' 
+           value: '1'
+         - regex: 'N\/A' 
+           value: '0'  
+    lookups:
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.2 # OID to look under.
+         labelname: instanceClusterDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.3 # OID to look under.
+         labelname: instanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.3.1.1.25 # OID to look under.
+         labelname: instanceStatus    # Output label name.
+         type: DisplayString                # Type of output object.            
+  - name: infoIndex
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.1
+    type: gauge
+    help: The index of the thread in the table. - 1.3.6.1.4.1.14876.4.1.1.1.1
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+    - labels:
+      - instanceIndex
+      labelname: instanceIndex
+      oid: 1.3.6.1.4.1.14876.3.1.1.1
+      type: gauge
+    - labels:
+      - infoIndex
+      labelname: infoIndex
+      oid: 1.3.6.1.4.1.14876.4.1.1.1.1
+      type: gauge
+  - name: infoInstanceDisplayName
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.2
+    type: DisplayString
+    help: The display name of instance this thread is processing on. - 1.3.6.1.4.1.14876.4.1.1.1.2
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoThreadName
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.3
+    type: DisplayString
+    help: The name of this thread. - 1.3.6.1.4.1.14876.4.1.1.1.3
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoDate
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.4
+    type: DisplayString
+    help: The date of the last info request. - 1.3.6.1.4.1.14876.4.1.1.1.4
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoTime
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.5
+    type: DisplayString
+    help: The time of the last info request. - 1.3.6.1.4.1.14876.4.1.1.1.5
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoTimeZone
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.6
+    type: DisplayString
+    help: The timezone of the last info request. - 1.3.6.1.4.1.14876.4.1.1.1.6
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoContext
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.7
+    type: DisplayString
+    help: The context of this thread - 1.3.6.1.4.1.14876.4.1.1.1.7
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoState
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.8
+    type: DisplayString
+    help: A textual description of the state of this thread. - 1.3.6.1.4.1.14876.4.1.1.1.8
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoStartTime
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.9
+    type: DisplayString
+    help: A textual description of the start time for this thread. - 1.3.6.1.4.1.14876.4.1.1.1.9
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoAppContext
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.10
+    type: DisplayString
+    help: A textual description of the current user context and function this thread is executing. - 1.3.6.1.4.1.14876.4.1.1.1.10
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoLastAppContext
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.11
+    type: DisplayString
+    help: The application context of the last application. - 1.3.6.1.4.1.14876.4.1.1.1.11
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoFunction
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.12
+    type: DisplayString
+    help: The function context of the current request. - 1.3.6.1.4.1.14876.4.1.1.1.12
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoTrace
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.13
+    type: DisplayString
+    help: Trace of the current request, usually 'script', 'built-in'. - 1.3.6.1.4.1.14876.4.1.1.1.13
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoDebugExceptions
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.14
+    type: DisplayString
+    help: The number of exceptions raised in this thread. - 1.3.6.1.4.1.14876.4.1.1.1.14
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: infoStatus
+    oid: 1.3.6.1.4.1.14876.4.1.1.1.15
+    type: DisplayString
+    help: A textual description of the current status of this thread. - 1.3.6.1.4.1.14876.4.1.1.1.15
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge 
+    regex_extracts: 
+      '': 
+         - regex: 'OK' 
+           value: '1'
+         - regex: 'N\/A' 
+           value: '0'           
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.3  # OID to look under.
+         labelname: infoThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.2  # OID to look under.
+         labelname: infoInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: perfInstanceDisplayName
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.1
+    type: DisplayString
+    help: Display string of the instance this thread belongs to. - 1.3.6.1.4.1.14876.4.2.1.1.1
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+  - name: perfThreadName
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.2
+    type: DisplayString
+    help: Name of this thread. - 1.3.6.1.4.1.14876.4.2.1.1.2
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+
+  - name: perfDate
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.3
+    type: DisplayString
+    help: The date of the last service request. - 1.3.6.1.4.1.14876.4.2.1.1.3
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+      
+  - name: perfTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.4
+    type: DisplayString
+    help: The time of the last service request. - 1.3.6.1.4.1.14876.4.2.1.1.4
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+      
+  - name: perfTimeZone
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.5
+    type: DisplayString
+    help: The time zone of the last service request. - 1.3.6.1.4.1.14876.4.2.1.1.5
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+      
+  - name: perfNumReq
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.6
+    type: DisplayString
+    help: The total number of requests this thread has handled since the system was last re-initialized. - 1.3.6.1.4.1.14876.4.2.1.1.6
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.23  # OID to look under.
+         labelname: perfRunMaxAppContext   # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: perfQueueDepthIn
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.7
+    type: DisplayString
+    help: The number of requests in the Queue when this Request started to be processed. - 1.3.6.1.4.1.14876.4.2.1.1.7
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: perfQueueDepthOut
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.8
+    type: DisplayString
+    help: The number of requests in the Queue when this Request was completed processing. - 1.3.6.1.4.1.14876.4.2.1.1.8
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.         
+  - name: perfQueueDepthInMax
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.9
+    type: DisplayString
+    help: The maximum number of requests in the Queue when any request started processing. - 1.3.6.1.4.1.14876.4.2.1.1.9
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: perfQueueDepthOutMax
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.10
+    type: DisplayString
+    help: The maximum number of requests in the Queue when any request was completed processing. - 1.3.6.1.4.1.14876.4.2.1.1.10
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+        - regex: '(.*)' 
+          value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.         
+  - name: perfCurrentReqTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.11
+    type: DisplayString
+    help: The time, in seconds, the current request is taking. - 1.3.6.1.4.1.14876.4.2.1.1.11
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.10  # OID to look under.
+         labelname: infoAppContext    # Output label name.
+         type: DisplayString                # Type of output object       
+  - name: perfCurrentReqQueueTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.12
+    type: DisplayString
+    help: The amount of time in seconds that the current request spent queuing. - 1.3.6.1.4.1.14876.4.2.1.1.12
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.10  # OID to look under.
+         labelname: infoAppContext    # Output label name.
+         type: DisplayString                # Type of output object        
+  - name: perfCurrentReqRunTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.13
+    type: DisplayString
+    help: The amount of time in seconds that the current request has spent running. - 1.3.6.1.4.1.14876.4.2.1.1.13
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.10  # OID to look under.
+         labelname: infoAppContext    # Output label name.
+         type: DisplayString                # Type of output object        
+  - name: perfLastReqQueueTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.14
+    type: DisplayString
+    help: The amount of time in seconds that the last request has spent queuing. - 1.3.6.1.4.1.14876.4.2.1.1.14
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.11  # OID to look under.
+         labelname: infoLastAppContext      # Output label name.
+         type: DisplayString                # Type of output object.         
+  - name: perfLastReqRunTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.15
+    type: DisplayString
+    help: The amount of time in seconds that the current request has spent running. - 1.3.6.1.4.1.14876.4.2.1.1.15
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.1.1.1.11  # OID to look under.
+         labelname: infoLastAppContext      # Output label name.
+         type: DisplayString                # Type of output object.         
+  - name: perfQueueAvgTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.16
+    type: DisplayString
+    help: The total amount of time in seconds that this thread has spent queuing requests. - 1.3.6.1.4.1.14876.4.2.1.1.16
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge 
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.        
+  - name: perfQueueMinTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.17
+    type: DisplayString
+    help: The minimum amount of time in seconds that a request has spent queuing since. - 1.3.6.1.4.1.14876.4.2.1.1.17
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: perfQueueMaxTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.18
+    type: DisplayString
+    help: The maximum amount of time, in seconds, that a request has spent queuing. - 1.3.6.1.4.1.14876.4.2.1.1.18
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.         
+  - name: perfRunAvgTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.19
+    type: DisplayString
+    help: The average time in seconds for a request to run. - 1.3.6.1.4.1.14876.4.2.1.1.19
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.        
+  - name: perfRunMinTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.20
+    type: DisplayString
+    help: The minimum time in seconds that it took for a request to complete. - 1.3.6.1.4.1.14876.4.2.1.1.20
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.        
+  - name: perfRunMaxTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.21
+    type: DisplayString
+    help: The maximum time, in seconds, it took for a request to complete. - 1.3.6.1.4.1.14876.4.2.1.1.21
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.         
+  - name: perfRunMaxFunc
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.22
+    type: DisplayString
+    help: The maximum running function. - 1.3.6.1.4.1.14876.4.2.1.1.22
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+      
+  - name: perfRunMaxAppContext
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.23
+    type: DisplayString
+    help: The application context of the longest running request - 1.3.6.1.4.1.14876.4.2.1.1.23
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+      
+  - name: perfTotalQueueTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.24
+    type: DisplayString
+    help: The total amount of time, in seconds that requests have spent queuing. - 1.3.6.1.4.1.14876.4.2.1.1.24
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.     
+  - name: perfTotalProcessingTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.25
+    type: DisplayString
+    help: The total amount of time in seconds this thread has spent processing requests. - 1.3.6.1.4.1.14876.4.2.1.1.25
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: perfTotalRunTime
+    oid: 1.3.6.1.4.1.14876.4.2.1.1.26
+    type: DisplayString
+    help: The total amount of time, in seconds, this thread has spent running requests. - 1.3.6.1.4.1.14876.4.2.1.1.26
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: infoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*) .*'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.1  # OID to look under.
+         labelname: perfInstanceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object. 
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.2  # OID to look under.
+         labelname: perfThreadName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,infoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.4.2.1.1.22  # OID to look under.
+         labelname: perfRunMaxFunc   # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: llagentsInfoIndex
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.1
+    type: gauge
+    help: The index of the agent in the table. - 1.3.6.1.4.1.14876.5.1.1.1.1
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    lookups:
+    - labels:
+      - instanceIndex
+      labelname: instanceIndex
+      oid: 1.3.6.1.4.1.14876.3.1.1.1
+      type: gauge
+    - labels:
+      - llagentsInfoIndex
+      labelname: llagentsInfoIndex
+      oid: 1.3.6.1.4.1.14876.5.1.1.1.1
+      type: gauge
+      
+  - name: llagentsDisplayName
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.2
+    type: DisplayString
+    help: The display name of instance this agent is processing on. - 1.3.6.1.4.1.14876.5.1.1.1.2
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+      
+  - name: llagentsIpAddress
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.3
+    type: DisplayString
+    help: The ip address of the instance the agent is running on. - 1.3.6.1.4.1.14876.5.1.1.1.3
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.       
+  - name: llagentsDate
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.4
+    type: DisplayString
+    help: The current date of this poll. - 1.3.6.1.4.1.14876.5.1.1.1.4
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.       
+  - name: llagentsTime
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.5
+    type: DisplayString
+    help: The current time of this poll. - 1.3.6.1.4.1.14876.5.1.1.1.5
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.       
+  - name: llagentsTimeZone
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.6
+    type: DisplayString
+    help: The current time of this poll. - 1.3.6.1.4.1.14876.5.1.1.1.6
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.       
+  - name: llagentsJobName
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.7
+    type: DisplayString
+    help: The thread name of this agent. - 1.3.6.1.4.1.14876.5.1.1.1.7
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.       
+  - name: llagentsState
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.8
+    type: DisplayString
+    help: The state of this agent. - 1.3.6.1.4.1.14876.5.1.1.1.8
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge               
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.       
+  - name: llagentsFunction
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.9
+    type: DisplayString
+    help: The current function of this agent. - 1.3.6.1.4.1.14876.5.1.1.1.9
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+         - regex: 'idle' 
+           value: '0'
+         - regex: 'running' 
+           value: '1'       
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.       
+  - name: llagentsLastStartTime
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.10
+    type: DisplayString
+    help: The last time this agent started running. - 1.3.6.1.4.1.14876.5.1.1.1.10
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.       
+  - name: llagentsNextTime
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.11
+    type: DisplayString
+    help: The next time this agent is scheduled to run. - 1.3.6.1.4.1.14876.5.1.1.1.11
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.          
+      
+  - name: llagentsSleepTime
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.12
+    type: DisplayString
+    help: The sleep time of this agent. - 1.3.6.1.4.1.14876.5.1.1.1.12
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.7   # OID to look under.
+         labelname: llagentsJobName    # Output label name.
+         type: DisplayString                # Type of output object.
+    #   - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+    #     oid: 1.3.6.1.4.1.14876.5.1.1.1.9  # OID to look under.
+    #     labelname: llagentsFunction    # Output label name.
+    #     type: DisplayString                # Type of output object.       
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.21  # OID to look under.
+         labelname: llagentsStatus    # Output label name.
+         type: DisplayString                # Type of output object.          
+         
+  - name: llagentsReqCount
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.13
+    type: DisplayString
+    help: The number of requests processed by this agent. - 1.3.6.1.4.1.14876.5.1.1.1.13
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.7   # OID to look under.
+         labelname: llagentsJobName    # Output label name.
+         type: DisplayString                # Type of output object.
+    #   - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+    #     oid: 1.3.6.1.4.1.14876.5.1.1.1.9  # OID to look under.
+    #     labelname: llagentsFunction    # Output label name.
+    #     type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.21  # OID to look under.
+         labelname: llagentsStatus    # Output label name.
+         type: DisplayString                # Type of output object.          
+         
+  - name: llagentsCurrentReqTime
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.14
+    type: DisplayString
+    help: The request time of the currently running agent - 1.3.6.1.4.1.14876.5.1.1.1.14
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.7   # OID to look under.
+         labelname: llagentsJobName    # Output label name.
+         type: DisplayString                # Type of output object.
+    #   - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+    #     oid: 1.3.6.1.4.1.14876.5.1.1.1.9  # OID to look under.
+    #     labelname: llagentsFunction    # Output label name.
+    #     type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.21  # OID to look under.
+         labelname: llagentsStatus    # Output label name.
+         type: DisplayString                # Type of output object.          
+         
+  - name: llagentsLastReqTime
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.15
+    type: DisplayString
+    help: The time it took for the last request to run. - 1.3.6.1.4.1.14876.5.1.1.1.15
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.7   # OID to look under.
+         labelname: llagentsJobName    # Output label name.
+         type: DisplayString                # Type of output object.
+    #   - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+    #     oid: 1.3.6.1.4.1.14876.5.1.1.1.9  # OID to look under.
+    #     labelname: llagentsFunction    # Output label name.
+    #     type: DisplayString                # Type of output object.  
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.21  # OID to look under.
+         labelname: llagentsStatus    # Output label name.
+         type: DisplayString                # Type of output object.          
+         
+  - name: llagentsAvgReqTime
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.16
+    type: DisplayString
+    help: The average time for requests to run. - 1.3.6.1.4.1.14876.5.1.1.1.16
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1' 
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.7   # OID to look under.
+         labelname: llagentsJobName    # Output label name.
+         type: DisplayString                # Type of output object.
+    #   - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+    #     oid: 1.3.6.1.4.1.14876.5.1.1.1.9  # OID to look under.
+    #     labelname: llagentsFunction    # Output label name.
+    #     type: DisplayString                # Type of output object.       
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.21  # OID to look under.
+         labelname: llagentsStatus    # Output label name.
+         type: DisplayString                # Type of output object.          
+         
+  - name: llagentsMinReqTime
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.17
+    type: DisplayString
+    help: The minimum time so far for a request to run. - 1.3.6.1.4.1.14876.5.1.1.1.17
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.7   # OID to look under.
+         labelname: llagentsJobName    # Output label name.
+         type: DisplayString                # Type of output object.
+    #   - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+    #     oid: 1.3.6.1.4.1.14876.5.1.1.1.9  # OID to look under.
+    #     labelname: llagentsFunction    # Output label name.
+    #     type: DisplayString                # Type of output object.       
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.21  # OID to look under.
+         labelname: llagentsStatus    # Output label name.
+         type: DisplayString                # Type of output object.          
+         
+  - name: llagentsMaxReqTime
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.18
+    type: DisplayString
+    help: The maximum time so far for a request to run. - 1.3.6.1.4.1.14876.5.1.1.1.18
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.7   # OID to look under.
+         labelname: llagentsJobName    # Output label name.
+         type: DisplayString                # Type of output object.
+    #   - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+    #     oid: 1.3.6.1.4.1.14876.5.1.1.1.9  # OID to look under.
+    #     labelname: llagentsFunction    # Output label name.
+    #     type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.21  # OID to look under.
+         labelname: llagentsStatus    # Output label name.
+         type: DisplayString                # Type of output object.          
+         
+  - name: llagentsProcessTime
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.19
+    type: DisplayString
+    help: The amount of time this agent has spent processing. - 1.3.6.1.4.1.14876.5.1.1.1.19
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.7   # OID to look under.
+         labelname: llagentsJobName    # Output label name.
+         type: DisplayString                # Type of output object.
+    #   - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+    #     oid: 1.3.6.1.4.1.14876.5.1.1.1.9  # OID to look under.
+    #     labelname: llagentsFunction    # Output label name.
+    #     type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.21  # OID to look under.
+         labelname: llagentsStatus    # Output label name.
+         type: DisplayString                # Type of output object.          
+         
+  - name: llagentsExceptionCount
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.20
+    type: DisplayString
+    help: The number of exceptions raised in this agent. - 1.3.6.1.4.1.14876.5.1.1.1.20
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.7   # OID to look under.
+         labelname: llagentsJobName    # Output label name.
+         type: DisplayString                # Type of output object.
+    #   - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+    #     oid: 1.3.6.1.4.1.14876.5.1.1.1.9  # OID to look under.
+    #     labelname: llagentsFunction    # Output label name.
+    #     type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.21  # OID to look under.
+         labelname: llagentsStatus    # Output label name.
+         type: DisplayString                # Type of output object.          
+  - name: llagentsStatus
+    oid: 1.3.6.1.4.1.14876.5.1.1.1.21
+    type: DisplayString
+    help: The current status of this agent. - 1.3.6.1.4.1.14876.5.1.1.1.21
+    indexes:
+    - labelname: instanceIndex
+      type: gauge
+    - labelname: llagentsInfoIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+         - regex: 'OK' 
+           value: '1'
+         - regex: 'N\/A' 
+           value: '200'       
+    lookups:
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.2  # OID to look under.
+         labelname: llagentsDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.5.1.1.1.7   # OID to look under.
+         labelname: llagentsJobName    # Output label name.
+         type: DisplayString                # Type of output object.
+    #   - labels: [instanceIndex,llagentsInfoIndex]     # Input label name(s). Empty means delete the output label.
+    #     oid: 1.3.6.1.4.1.14876.5.1.1.1.9  # OID to look under.
+    #     labelname: llagentsFunction    # Output label name.
+    #     type: DisplayString                # Type of output object.        
+  - name: serviceIndex
+    oid: 1.3.6.1.4.1.14876.6.1.1.1
+    type: gauge
+    help: The index of the service. - 1.3.6.1.4.1.14876.6.1.1.1
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    lookups:
+    - labels:
+      - serviceIndex
+      labelname: serviceIndex
+      oid: 1.3.6.1.4.1.14876.6.1.1.1
+      type: gauge
+  - name: serviceDisplayName
+    oid: 1.3.6.1.4.1.14876.6.1.1.2
+    type: DisplayString
+    help: The display name of this service request. - 1.3.6.1.4.1.14876.6.1.1.2
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+
+  - name: serviceClientName
+    oid: 1.3.6.1.4.1.14876.6.1.1.3
+    type: DisplayString
+    help: The client display name of this service request. - 1.3.6.1.4.1.14876.6.1.1.3
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+
+  - name: serviceDate
+    oid: 1.3.6.1.4.1.14876.6.1.1.4
+    type: DisplayString
+    help: The date of the this service request. - 1.3.6.1.4.1.14876.6.1.1.4
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+
+  - name: serviceTime
+    oid: 1.3.6.1.4.1.14876.6.1.1.5
+    type: DisplayString
+    help: The time of the this service request. - 1.3.6.1.4.1.14876.6.1.1.5
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+
+  - name: serviceTimeZone
+    oid: 1.3.6.1.4.1.14876.6.1.1.6
+    type: DisplayString
+    help: The time zone of the this service request. - 1.3.6.1.4.1.14876.6.1.1.6
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+
+  - name: serviceLlmaUniqueID
+    oid: 1.3.6.1.4.1.14876.6.1.1.7
+    type: DisplayString
+    help: The unique identifier of this service request. - 1.3.6.1.4.1.14876.6.1.1.7
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object..
+  - name: serviceExecutionTime
+    oid: 1.3.6.1.4.1.14876.6.1.1.8
+    type: DisplayString
+    help: The duration, in seconds, of the last service request. - 1.3.6.1.4.1.14876.6.1.1.8
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)  .*'
+         value: '$1'
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.14   # OID to look under.
+         labelname: serviceResponseCode    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.12  # OID to look under.
+         labelname:  serviceRequest    # Output label name.
+         type: DisplayString                # Type of output object.         
+  - name: serviceMinExecutionTime
+    oid: 1.3.6.1.4.1.14876.6.1.1.9
+    type: DisplayString
+    help: The duration, in seconds, of the fastest service request. - 1.3.6.1.4.1.14876.6.1.1.9
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)  .*'
+         value: '$1'
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.14   # OID to look under.
+         labelname: serviceResponseCode    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.12  # OID to look under.
+         labelname:  serviceRequest    # Output label name.
+         type: DisplayString                # Type of output object.         
+  - name: serviceAvgExecutionTime
+    oid: 1.3.6.1.4.1.14876.6.1.1.10
+    type: DisplayString
+    help: The duration, in seconds, of the average service request. - 1.3.6.1.4.1.14876.6.1.1.10
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)  .*'
+         value: '$1'
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.14   # OID to look under.
+         labelname: serviceResponseCode    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.12  # OID to look under.
+         labelname:  serviceRequest    # Output label name.
+         type: DisplayString                # Type of output object.         
+  - name: serviceMaxExecutionTime
+    oid: 1.3.6.1.4.1.14876.6.1.1.11
+    type: DisplayString
+    help: The duration, in seconds, of the slowest service request. - 1.3.6.1.4.1.14876.6.1.1.11
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)  .*'
+         value: '$1'
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.14   # OID to look under.
+         labelname: serviceResponseCode    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.12  # OID to look under.
+         labelname:  serviceRequest    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: serviceRequest
+    oid: 1.3.6.1.4.1.14876.6.1.1.12
+    type: DisplayString
+    help: The service request. - 1.3.6.1.4.1.14876.6.1.1.12
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.14   # OID to look under.
+         labelname: serviceResponseCode    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.12  # OID to look under.
+         labelname:  serviceRequest    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: serviceUserName
+    oid: 1.3.6.1.4.1.14876.6.1.1.13
+    type: DisplayString
+    help: The name of the user making this service request. - 1.3.6.1.4.1.14876.6.1.1.13
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: serviceResponseCode
+    oid: 1.3.6.1.4.1.14876.6.1.1.14
+    type: DisplayString
+    help: The HTTP response code for this service request. - 1.3.6.1.4.1.14876.6.1.1.14
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: serviceResponseMessage
+    oid: 1.3.6.1.4.1.14876.6.1.1.15
+    type: DisplayString
+    help: The HTTP response message for this service request. - 1.3.6.1.4.1.14876.6.1.1.15
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    regex_extracts: 
+      '': 
+         - regex: 'OK' 
+           value: '1'
+         - regex: 'REDIRECT' 
+           value: '100'
+         - regex: 'Request Failed' 
+           value: '200'             
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+  - name: serviceResponseByteCount
+    oid: 1.3.6.1.4.1.14876.6.1.1.16
+    type: DisplayString
+    help: The number of bytes in the response to this service request. - 1.3.6.1.4.1.14876.6.1.1.16
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.14   # OID to look under.
+         labelname: serviceResponseCode    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.12  # OID to look under.
+         labelname:  serviceRequest    # Output label name.
+         type: DisplayString                # Type of output object.         
+  - name: serviceRequestCount
+    oid: 1.3.6.1.4.1.14876.6.1.1.17
+    type: DisplayString
+    help: The number of times the service request has been made. - 1.3.6.1.4.1.14876.6.1.1.17
+    indexes:
+    - labelname: serviceIndex
+      type: gauge
+    regex_extracts:
+       '':
+       - regex: '(.*)'
+         value: '$1'
+     # Lookups take original indexes, look them up in another part of the
+     # oid tree and overwrite the given output label.
+    lookups:
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.2   # OID to look under.
+         labelname: serviceDisplayName    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.14   # OID to look under.
+         labelname: serviceResponseCode    # Output label name.
+         type: DisplayString                # Type of output object.
+       - labels: [serviceIndex]     # Input label name(s). Empty means delete the output label.
+         oid: 1.3.6.1.4.1.14876.6.1.1.12  # OID to look under.
+         labelname:  serviceRequest    # Output label name.
+         type: DisplayString                # Type of output object.
+  version: 2
+  max_repetitions: 25
+  retries: 3
+  timeout: 60s
+  auth:
+    community: asdf3242sf23425saf
