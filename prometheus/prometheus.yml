@@ -20,6 +20,8 @@ rule_files:
   - "prometheus_rules_otcs.yml"
   - "prometheus_rules_windows.yml"
   - "prometheus_rules_blackbox.yml"
+  - "prometheus_rules_windows_exporter_schedule_tasks.yml"
+  
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:

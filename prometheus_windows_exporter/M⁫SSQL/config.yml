@@ -1,0 +1,4 @@
+collectors:
+  enabled: cpu,cs,net,service,iis,memory,logical_disk,logon,process,service,tcp,time,os,scheduled_task,mssql,terminal_services,remote_fx,logon
+log:
+  level: warn

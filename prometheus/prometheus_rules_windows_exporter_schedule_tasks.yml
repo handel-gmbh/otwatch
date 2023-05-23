@@ -1,0 +1,15 @@
+groups:
+  - name: Windows Exporter Schedule Taks
+    rules:
+      - alert: WindowsScheduledTaskOpenTextFailure
+        expr: windows_scheduled_task_state{task=~"/OpenText/.*", state="running"} == 1
+        for: 4h
+        labels:
+          severity: "P4"
+          severity_desc: "Low"
+          team: hit-opsgenie 
+          HID: WSWS0101
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1655799851"          
+        annotations:
+          summary: "Scheduled Task runs more than 4 Hour"
+          description: "Scheduled task '{{ $labels.task }}' failed for 1 day"
