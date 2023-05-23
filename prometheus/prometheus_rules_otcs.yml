@@ -1,0 +1,135 @@
+groups:
+  - name: opentext Content Server
+    rules:
+      - alert: OTCS-clusterNumActiveThreads
+        expr: clusterNumThreads-clusterNumActiveThreads <4
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTCS0902
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/714998035"
+        annotations:
+          summary: "Content Server low Threads (instance {{ $labels.instance }})"
+          description: "Content Server has les than 4 Threads available \n  VALUE = {{ $value }}"
+      - alert: OTCS-OTCS0101_serviceExecutionTime
+        expr: serviceExecutionTime{serviceDisplayName=~"OTCS.+"} > 20
+        for: 10m
+        labels:
+          severity: "P3"
+          severity_desc: "Moderat"
+          team: hit-opsgenie
+          HID: OTCS0903
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/720699577"
+        annotations:
+          summary: "Content Server Monitoring Agent URL Check are slow (instance {{ $labels.instance }})"
+          description: "One Content Server Monitoring Agent URL Check running Time is over 20s \n  VALUE = {{ $value }}"
+      - alert: OTCS-OTCS0101_serviceResponseCode
+        expr: serviceResponseCode < 200 
+        for: 10m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTCS0904
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/720699594"
+        annotations:
+          summary: "Content Server Monitoring Agent URL Check failed (instance {{ $labels.instance }})"
+          description: "Content Server Monitoring Agent URL Check failed is not 200 Resbonscode = {{ $value }}"
+      - alert: OTCS-clusterRunAvgTime
+        expr: clusterRunAvgTime > 30
+        for: 0m
+        labels:
+          severity: "P3"
+          severity_desc: "Moderat"
+          team: hit-opsgenie
+          HID: OTCS0905
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/720699609"
+        annotations:
+          summary: "Content Server Cluster has High Avg Request Time (instance {{ $labels.instance }})"
+          description: "Content Server Cluster High Avg Request Time over 30s \n  VALUE = {{ $value }}"
+      - alert: OTCS-perfCurrentReqTime != Admin.DbVerify
+        expr: perfCurrentReqTime{infoAppContext!~".*Admin.DbVerify'"} >180000
+        for: 0m
+        labels:
+          severity: "P5"
+          severity_desc: "Information"
+          team: hit-opsgenie
+          HID: OTCS0906
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/714998047"
+        annotations:
+          summary: "Content Server Thread has a long running Request (instance {{ $labels.instance }})"
+          description: "Content Server Thread has a long running Request more than 2 Day \n  VALUE = {{ $value }}\n "
+      - alert: OTCS-llagentsCurrentReqTime
+        expr: llagentsCurrentReqTime >180000
+        for: 0m
+        labels:
+          severity: "P5"
+          severity_desc: "Information"
+          team: hit-opsgenie
+          HID: OTCS1004
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1655767056"
+        annotations:
+          summary: "Content Server Agent Long running Request (instance {{ $labels.instance }})"
+          description: "Content Server Agent Long running Request more than 2 Day \n  VALUE = {{ $value }}"
+      - alert: OTCS-serviceExecutionTime
+        expr: serviceExecutionTime{serviceDisplayName=~"OTCS.+"} > 30
+        for: 10m
+        labels:
+          severity: "P3"
+          severity_desc: "Moderat"
+          team: hit-opsgenie
+          HID: OTCS2001
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656029209"
+        annotations:
+          summary: "Content Server Services Long duration (instance {{ $labels.instance }})"
+          description: "Content Server Services has over 30s \n  VALUE = {{ $value }}"
+      - alert: OTCS-serviceResponseCode
+        expr: serviceResponseCode > 200  and serviceResponseCode < 499 and serviceResponseCode > 499
+        for: 0m
+        labels:
+          severity: "P3"
+          severity_desc: "Moderat"
+          team: hit-opsgenie
+          HID: OTCS2002
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1655734299"
+        annotations:
+          summary: "Content Server Services not Succesfully(instance {{ $labels.instance }})"
+          description: "Content Server Services has not response Code 200 \n  Resns Http Status Code = https://httpstatus.in/{{ $value }}/}"  
+      - alert: OTCS_AGENT_Distributetagent_not_working
+        expr: increase(llagentsCurrentReqTime{llagentsJobName="distributedagent"}[15m]) == 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTCS1001
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/837713921"
+        annotations:
+          summary: "Content Server Distributet Agents not Working(instance {{ $labels.instance }})"
+          description: "They dont change the State since 15min"  
+      - alert: OTCS_AGENT_daagent_not_working
+        expr: increase(llagentsCurrentReqTime{llagentsJobName="daagent"}[15m]) == 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTCS1002
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/837681159"
+        annotations:
+          summary: "Content Server daagent Agents not Working(instance {{ $labels.instance }})"
+          description: "They dont change the State since 15min" 
+      - alert: OTCS_AGENT_otcoreshareagent_not_working
+        expr: increase(llagentsCurrentReqTime{llagentsJobName="otcoreshareagent"}[15m]) == 0
+        for: 0m
+        labels:
+          severity: "P3"
+          severity_desc: "Moderat"
+          team: hit-opsgenie
+          HID: OTCS1003
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/855080961"
+        annotations:
+          summary: "Content Server otcoreshareagen Agents not Working(instance {{ $labels.instance }})"
+          description: "They dont change the State since 15min"           

@@ -6,13 +6,20 @@ OTAS:
     oid: 1.3.6.1.2.1.1.1
     type: DisplayString
     help: Hostname of the Archive Server 
+  - name: sysUpTime
+    oid: 1.3.6.1.2.1.1.3.0
+    type: DisplayString
+    help: Running time of the Archive Server 
   - name: otacServicesStatus
     oid: 1.3.6.1.4.1.16.73.1.0.0
     type: DisplayString
     help: Check the Services of the Archive Center
     regex_extracts: 
-      '': 
-        - regex: '.*\w+@(\d+) .*' 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
           value: '$1'
   - name: otacServicesjds
     oid: 1.3.6.1.4.1.16.73.1.1.0
@@ -69,8 +76,19 @@ OTAS:
       'time': 
         - regex: '.*\= =(\d+).*'
           value: '$1'
-  - name: otacServicesvmig
+  - name: otacServiceststp
     oid: 1.3.6.1.4.1.16.73.1.6.0
+    type: DisplayString 
+    help: Check the Services of the Archive Center TimeStamp
+    regex_extracts: 
+      'status': 
+        - regex: '.*\w+\-\w+\@(\d+).*'
+          value: '$1'
+      'time': 
+        - regex: '.*\= =(\d+).*'
+          value: '$1'
+  - name: otacServicesvmig
+    oid: 1.3.6.1.4.1.16.73.1.7.0
     type: DisplayString 
     help: Check the Services of the Archive Center vmig
     regex_extracts: 
@@ -81,23 +99,23 @@ OTAS:
         - regex: '.*\= =(\d+).*'
           value: '$1'
   - name: otacPoolsandVolumes
-    oid: 1.3.6.1.4.1.16.73.1.7.0
+    oid: 1.3.6.1.4.1.16.73.1.8.0
     type: DisplayString 
     help: Check the Pools and Volumes from Archive Center
     regex_extracts: 
       'status': 
-        - regex: '.*Pools and Volumes\@(\d+).*'
+        - regex: '.*\@(\d+).*'
           value: '$1'
       'time': 
         - regex: '.*\= =(\d+).*'
           value: '$1'
   - name: otacPVUnavailableVolumes
-    oid: 1.3.6.1.4.1.16.73.1.8.0
+    oid: 1.3.6.1.4.1.16.73.1.9.0
     type: DisplayString 
     help: Check Unavailable Volumes from the Pools and Volumes from Archive Center
     regex_extracts: 
       'status': 
-        - regex: '.*Pools and Volumes-UnavailableVolumes\@(\d+).*'
+        - regex: '.*\w+\-\w+\@(\d+).*'
           value: '$1'
       'time': 
         - regex: '.*\= =(\d+).*'
@@ -106,64 +124,64 @@ OTAS:
         - regex: '.*:(\d+).*'
           value: '$1'
   - name: otacStorageManager
-    oid: 1.3.6.1.4.1.16.73.1.9.0
+    oid: 1.3.6.1.4.1.16.73.1.10.0
     type: DisplayString 
     help: Check Storage Manager from Archive Center
     regex_extracts: 
       'status': 
-        - regex: '.*Storage Manager\@(\d+).*'
+        - regex: '.*\@(\d+).*'
           value: '$1'
       'time': 
         - regex: '.*\= =(\d+).*'
           value: '$1'
   - name: otacDatabase
-    oid: 1.3.6.1.4.1.16.73.1.10.0
+    oid: 1.3.6.1.4.1.16.73.1.11.0
     type: DisplayString 
     help: Check Database from Archive Center
     regex_extracts: 
       'status': 
-        - regex: '.*Database\@(\d+).*'
+        - regex: '.*\@(\d+).*'
           value: '$1'
       'time': 
         - regex: '.*\= =(\d+).*'
           value: '$1'
   - name: otacDatabaseTableSpaceErrAuxSrv
-    oid: 1.3.6.1.4.1.16.73.1.11.0
+    oid: 1.3.6.1.4.1.16.73.1.12.0
     type: DisplayString 
     help: Check Database Table Space Err Aux Srv from Archive Center
     regex_extracts: 
       'status': 
-        - regex: '.*Database-TableSpaceErrAuxSrv\@(\d+).*'
+        - regex: '.*\w+\-\w+\@(\d+).*'
           value: '$1'
       'time': 
         - regex: '.*\= =(\d+).*'
           value: '$1'
   - name: otacDatabaseTableSpaceErrBKUP
-    oid: 1.3.6.1.4.1.16.73.1.12.0
+    oid: 1.3.6.1.4.1.16.73.1.13.0
     type: DisplayString 
     help: Check Database Table Space Err Bkup from Archive Center
     regex_extracts: 
       'status': 
-        - regex: '.*Database-TableSpaceErrBKUP\@(\d+).*'
+        - regex: '.*\w+\-\w+\@(\d+).*'
           value: '$1'
       'time': 
         - regex: '.*\= =(\d+).*'
           value: '$1'
   - name: otacDatabaseTableSpaceErrVMIG
-    oid: 1.3.6.1.4.1.16.73.1.13.0
+    oid: 1.3.6.1.4.1.16.73.1.14.0
     type: DisplayString 
     help: Check Database Table Space Err VMIG from Archive Center 1.3.6.1.4.1.16.73.1.13.0
     regex_extracts: 
       'status': 
-        - regex: '.*Database-TableSpaceErrVMIG\@(\d+).*'
+        - regex: '.*\w+\-\w+\@(\d+).*'
           value: '$1'
       'time': 
         - regex: '.*\= =(\d+).*'
           value: '$1'
   - name: otacPoolsandVolumes01
-    oid: 1.3.6.1.4.1.16.73.1.14.0
+    oid: 1.3.6.1.4.1.16.73.1.51.0
     type: DisplayString 
-    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.14.0
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.51.0
     regex_extracts: 
       'status': 
         - regex: '.*\@(\d+).*'
@@ -178,9 +196,9 @@ OTAS:
         - regex: '.*Free\:\ (\d+).*'
           value: '$1'
   - name: otacPoolsandVolumes02
-    oid: 1.3.6.1.4.1.16.73.1.15.0
+    oid: 1.3.6.1.4.1.16.73.1.52.0
     type: DisplayString 
-    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.15.0
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.52.0
     regex_extracts: 
       'status': 
         - regex: '.*\@(\d+).*'
@@ -195,9 +213,9 @@ OTAS:
         - regex: '.*Free\:\ (\d+).*'
           value: '$1'
   - name: otacPoolsandVolumes03
-    oid: 1.3.6.1.4.1.16.73.1.16.0
+    oid: 1.3.6.1.4.1.16.73.1.53.0
     type: DisplayString 
-    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.16.0
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.53.0
     regex_extracts: 
       'status': 
         - regex: '.*\@(\d+).*'
@@ -212,9 +230,9 @@ OTAS:
         - regex: '.*Free\:\ (\d+).*'
           value: '$1'
   - name: otacPoolsandVolumes04
-    oid: 1.3.6.1.4.1.16.73.1.17.0
+    oid: 1.3.6.1.4.1.16.73.1.54.0
     type: DisplayString 
-    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.17.0
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.54.0
     regex_extracts: 
       'status': 
         - regex: '.*\@(\d+).*'
@@ -229,9 +247,9 @@ OTAS:
         - regex: '.*Free\:\ (\d+).*'
           value: '$1'
   - name: otacPoolsandVolumes05
-    oid: 1.3.6.1.4.1.16.73.1.18.0
+    oid: 1.3.6.1.4.1.16.73.1.55.0
     type: DisplayString 
-    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.18.0
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.55.0
     regex_extracts: 
       'status': 
         - regex: '.*\@(\d+).*'
@@ -246,9 +264,9 @@ OTAS:
         - regex: '.*Free\:\ (\d+).*'
           value: '$1'
   - name: otacPoolsandVolumes06
-    oid: 1.3.6.1.4.1.16.73.1.19.0
+    oid: 1.3.6.1.4.1.16.73.1.56.0
     type: DisplayString 
-    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.19.0
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.56.0
     regex_extracts: 
       'status': 
         - regex: '.*\@(\d+).*'
@@ -262,10 +280,27 @@ OTAS:
       'totalspaceprocent': 
         - regex: '.*Free\:\ (\d+).*'
           value: '$1'
-  - name: otacPoolsandVolumes07
-    oid: 1.3.6.1.4.1.16.73.1.20.0
+  - name: otacPoolsandVolumes08
+    oid: 1.3.6.1.4.1.16.73.1.58.0
     type: DisplayString 
-    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.19.0
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.58.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'
+  - name: otacPoolsandVolumes09
+    oid: 1.3.6.1.4.1.16.73.1.59.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.59.0
     regex_extracts: 
       'status': 
         - regex: '.*\@(\d+).*'
@@ -279,6 +314,91 @@ OTAS:
       'totalspaceprocent': 
         - regex: '.*Free\:\ (\d+).*'
           value: '$1'    
+  - name: otacPoolsandVolumes10
+    oid: 1.3.6.1.4.1.16.73.1.60.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.60.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'    
+  - name: otacPoolsandVolumes11
+    oid: 1.3.6.1.4.1.16.73.1.61.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.61.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'    
+  - name: otacPoolsandVolumes12
+    oid: 1.3.6.1.4.1.16.73.1.62.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.62.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'    
+  - name: otacPoolsandVolumes13
+    oid: 1.3.6.1.4.1.16.73.1.63.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.63.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'    
+  - name: otacPoolsandVolumes14
+    oid: 1.3.6.1.4.1.16.73.1.64.0
+    type: DisplayString 
+    help: Check Pools and Volumes from Archive Center 1.3.6.1.4.1.16.73.1.64.0
+    regex_extracts: 
+      'status': 
+        - regex: '.*\@(\d+).*'
+          value: '$1'   
+      'freespaceGB': 
+        - regex: '.*Best\ Partition\:\ (\d+).*'
+          value: '$1'
+      'totalspaceGB': 
+        - regex: '.*Pool\:\ (\d+).*'
+          value: '$1'
+      'totalspaceprocent': 
+        - regex: '.*Free\:\ (\d+).*'
+          value: '$1'            
   version: 1
   max_repetitions: 25
   retries: 0

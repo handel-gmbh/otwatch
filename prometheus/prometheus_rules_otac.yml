@@ -1,0 +1,185 @@
+groups:
+  - name: opentext Archive Center
+    rules:
+      - alert: OTAC-ServicesStatusFailed
+        expr: otacServicesStatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0301
+          oid: 1.3.6.1.4.1.16.73.1.0.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096146"
+        annotations:
+          summary: "opentext Archive Center  Service failed (instance {{ $labels.instance }})"
+          description: "opentext Archive Center Service failed \n  Status = {{ $value }}"
+      - alert: OTAC-otacServicesjdsFailed
+        expr: otacServicesjdsstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0302
+          oid: 1.3.6.1.4.1.16.73.1.1.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/714998011"
+        annotations:
+          summary: "opentext Archive Center Document Service failed  (instance {{ $labels.instance }})"
+          description: "opentext Archive Center Document Service failed to run\n  Status = {{ $value }}"
+      - alert: OTAC-otacServicesadmsrvFailed
+        expr: otacServicesadmsrvstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0303
+          oid: 1.3.6.1.4.1.16.73.1.1.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/724697167"
+        annotations:
+          summary: "opentext Archive Admin Service failed  (instance {{ $labels.instance }})"
+          description: "opentext Archive Center Admin Service failed to run\n  Status = {{ $value }}"  
+      - alert: OTAC-otacServicesbksrvFailed
+        expr: otacServicesbksrvstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0304
+          oid: 1.3.6.1.4.1.16.73.1.1.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096153"
+        annotations:
+          summary: "opentext Archive Backup Service failed  (instance {{ $labels.instance }})"
+          description: "opentext Archive Backup Admin Service failed to run\n  Status = {{ $value }}"
+      - alert: OTAC-otacServicesauxsrvrFailed
+        expr: otacServicesauxsrvrstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0305
+          oid: 1.3.6.1.4.1.16.73.1.4.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096160"
+        annotations:
+          summary: "opentext Archive Aux Service failed  (instance {{ $labels.instance }})"
+          description: "opentext Archive Aux Admin Service failed to run\n  Status = {{ $value }}\n "  
+      - alert: OTAC-otacServicesjbdFailed
+        expr: otacServicesjbdstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0306
+          oid: 1.3.6.1.4.1.16.73.1.5.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715063498"
+        annotations:
+          summary: "opentext Archive Jukebox Service failed  (instance {{ $labels.instance }})"
+          description: "opentext Archive Jukebox Admin Service failed to run\n  Status = {{ $value }}"
+      - alert: OTAC-otacServicesvmigFailed
+        expr: otacServicesvmigstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0307
+          oid: 1.3.6.1.4.1.16.73.1.6.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/724697194"
+        annotations:
+          summary: "opentext Archive Migration VOLMIG Service failed  (instance {{ $labels.instance }})"
+          description: "opentext Archive Migration VOLMIG Admin Service failed to run\n  Status = {{ $value }}\n "        
+      - alert: OTAC-PoolsandVolumesstatusFailed
+        expr: otacPoolsandVolumesstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0308
+          oid: 1.3.6.1.4.1.16.73.1.7.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715063515"
+        annotations:
+          summary: "Archive Server Pool and Volumes failed (instance {{ $labels.instance }})"
+          description: "Archive Server Pool and Volumes \n  VALUE = {{ $value }}"
+      - alert: OTAC-otacPVUnavailableVolumesFailed
+        expr: otacPVUnavailableVolumesstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0309
+          oid: 1.3.6.1.4.1.16.73.1.8.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096177"
+        annotations:
+          summary: "Archive Server Unavailable Volumes (instance {{ $labels.instance }})"
+          description: "Archive Server Unavailable Volumes \n  VALUE = {{ $value }}"          
+      - alert: OTAC-StorageManagerstatusFailed
+        expr: otacStorageManagerstatus != 0
+        for: 0m
+        labels:
+          severity: "P3"
+          severity_desc: "Moderat"
+          team: hit-opsgenie
+          HID: OTAC0310
+          oid: 1.3.6.1.4.1.16.73.1.9.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/720699535"
+        annotations:
+          summary: "Archive Server Storage Manager failed (instance {{ $labels.instance }})"
+          description: "Archive Server Storage Manage Status is not 0 Insted he has the Value = {{ $value }}"
+      - alert: OTAC-DatabasestatusFailed
+        expr: otacDatabasestatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0201
+          oid: 1.3.6.1.4.1.16.73.1.10.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715063522"
+        annotations:
+          summary: "Archive Server Database failed (instance {{ $labels.instance }})"
+          description: "Archive Server Database failed \n  VALUE = {{ $value }}"       
+      - alert: OTAC-DatabaseTableSpaceErrAuxSrvstatusFailed
+        expr: otacDatabaseTableSpaceErrAuxSrvstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0202
+          oid: 1.3.6.1.4.1.16.73.1.11.0
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715063529"
+        annotations:
+          summary: "Archive Server Databse Err Aux failed (instance {{ $labels.instance }})"
+          description: "Archive Server Databse Err Aux failed\n  VALUE = {{ $value }}"
+      - alert: OTAC-DatabaseTableSpaceErrBKUPstatusFailed
+        expr: otacDatabaseTableSpaceErrBKUPstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0203
+          oid: 1.3.6.1.4.1.16.73.1.12.0 
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096194"
+        annotations:
+          summary: "Archive Server Databse Err backup failed (instance {{ $labels.instance }})"
+          description: "Archive Server Databse Err backup failed\n  VALUE = {{ $value }}"
+      - alert: OTAC-DatabaseTableSpaceErrVMIGstatusFailed
+        expr: otacDatabaseTableSpaceErrVMIGstatus != 0
+        for: 0m
+        labels:
+          severity: "P4"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0204
+          oid: 1.3.6.1.4.1.16.73.1.13.0
+          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/714998028"  
+        annotations:
+          summary: "Archive Server Databse Err VMIG failed (instance {{ $labels.instance }})"
+          description: "Archive Server Databse Err VMIG \n  VALUE = {{ $value }}"

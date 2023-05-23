@@ -74,8 +74,29 @@ modules:
       preferred_ip_protocol: ip4
       no_follow_redirects: false
       fail_if_not_ssl: true
+#      fail_if_body_not_matches_regexp: 
+#        - "Archive Server Error"
+    
+  http_2xx_otcswrdestination:
+    prober: http
+    timeout: 15s
+    http:
+      preferred_ip_protocol: ip4
+      no_follow_redirects: false
+      fail_if_not_ssl: true
       fail_if_body_not_matches_regexp: 
-        - "Archive Server Error"
+        - "objAction=Destination"       
+ 
+  http_2xx_otcs_lb:
+    prober: http
+    timeout: 15s
+    http:
+      preferred_ip_protocol: ip4
+      no_follow_redirects: false
+      fail_if_not_ssl: true
+      fail_if_body_not_matches_regexp: 
+        - "TRUE"   
+        
   http_2xx:
     prober: http
   http_post_2xx:
@@ -108,3 +129,4 @@ modules:
       - expect: "^:[^ ]+ 001"
   icmp:
     prober: icmp
+

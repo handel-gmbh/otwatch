@@ -1,0 +1,91 @@
+global:
+  opsgenie_api_url: https://api.eu.opsgenie.com/
+  opsgenie_api_key: <key>
+
+route:
+  group_by: ['env']
+  group_wait: 1m
+  group_interval: 5m
+  repeat_interval: 1h
+  receiver: 'hit_opsgenie_p3'
+  routes:
+    - match:
+        team: hit-opsgenie
+        severity: P1
+      receiver: hit_opsgenie_p1
+    - match:
+        team: hit-opsgenie
+        severity: P2
+      receiver: hit_opsgenie_p2  
+    - match:
+        team: hit-opsgenie
+        severity: P3
+      receiver: hit_opsgenie_p3  
+    - match:
+        team: hit-opsgenie
+        severity: P4
+      receiver: hit_opsgenie_p4  
+    - match:
+        team: hit-opsgenie
+        severity: P5
+      receiver: hit_opsgenie_p5        
+    - match:
+        team: hit-opsgenie
+      receiver: heartbeat-receiver
+
+receivers:
+  - name: 'hit_opsgenie_p1'   
+    opsgenie_configs:
+      - responders:
+          - name: 'otwatch_L0'
+            type: 'team'
+        priority: P1 
+        send_resolved: true
+        update_alerts: true
+  - name: 'hit_opsgenie_p2'   
+    opsgenie_configs:
+      - responders:
+          - name: 'otwatch_L0'
+            type: 'team'
+        priority: P2 
+        send_resolved: true
+        update_alerts: true
+  - name: 'hit_opsgenie_p3'   
+    opsgenie_configs:
+      - responders:
+          - name: 'otwatch_L0'
+            type: 'team'
+        priority: P3 
+        send_resolved: true
+        update_alerts: true
+  - name: 'hit_opsgenie_p4'   
+    opsgenie_configs:
+      - responders:
+          - name: 'otwatch_L0'
+            type: 'team'
+        priority: P4 
+        send_resolved: true
+        update_alerts: true
+  - name: 'hit_opsgenie_p5'   
+    opsgenie_configs:
+      - responders:
+          - name: 'otwatch_L0'
+            type: 'team'
+        priority: P5 
+        send_resolved: true
+        update_alerts: true
+  - name: heartbeat-receiver
+    webhook_configs:
+      - url: 'https://api.eu.opsgenie.com/v2/heartbeats/otwatch_pilatus/ping'
+        send_resolved: true
+        http_config:
+          authorization:
+            type: GenieKey
+            credentials: '<key>'
+
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'dev', 'instance']
