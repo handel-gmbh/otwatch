@@ -7,7 +7,9 @@ groups:
         labels:
           severity: "P2"
           severity_desc: "High"
-          team: hit-opsgenie
+          team: "hit-opsgenie"
+          HID: "WSWE0101"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656061978"
         annotations:
           summary: "Windows Server collector Error (instance {{ $labels.instance }})"
           description: "Collector {{ $labels.collector }} was not successful\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -18,6 +20,8 @@ groups:
           severity: "P2"
           severity_desc: "High"
           team: hit-opsgenie
+          HID: "WSSC0101"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1655930925"
         annotations:
           summary: "Windows Server service Status (instance {{ $labels.instance }})"
           description: "Windows Service state is not OK\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -28,6 +32,8 @@ groups:
           severity: "P3"
           severity_desc: "Moderat"
           team: hit-opsgenie
+          HID: "WSCPU0101"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/876609545"          
         annotations:
           summary: "Windows Server CPU Usage (instance {{ $labels.instance }})"
           description: "CPU Usage is more than 80%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -38,6 +44,8 @@ groups:
           severity: "P3"
           severity_desc: "Moderat"
           team: hit-opsgenie
+          HID: "WSCPU0101"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1655636009"                  
         annotations:
           summary: "Windows Server memory Usage (instance {{ $labels.instance }})"
           description: "Memory usage is more than 90%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -48,6 +56,8 @@ groups:
           severity: "P2"
           severity_desc: "High"
           team: hit-opsgenie
+          HID: "WSRAM0101"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1655963670" 
         annotations:
           summary: "Windows Server disk Space Usage (instance {{ $labels.instance }})"
           description: "Disk usage is more than 90%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -58,6 +68,8 @@ groups:
           severity: "P3"
           severity_desc: "Moderat"
           team: hit-opsgenie
+          HID: "WSHD0101"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1655963670"
         annotations:
           summary: "Windows Server disk Space Usage (instance {{ $labels.instance }})"
           description: "Disk usage is more than 80%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
