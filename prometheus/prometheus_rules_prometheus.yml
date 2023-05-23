@@ -8,6 +8,8 @@ groups:
           team: hit-opsgenie
           severity: "P2"
           severity_desc: "High"
+          HID: "OWPT0101"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1655996431"          
         annotations:
           summary: "Prometheus target missing (instance {{ $labels.instance }})"
           description: "A Prometheus target has disappeared. An exporter might be crashed.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -18,6 +20,8 @@ groups:
           team: hit-opsgenie
           severity: "P1"
           severity_desc: "Critical"
+          HID: "OWPT0102"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656225793" 
         annotations:
           summary: "Prometheus all targets missing (instance {{ $labels.instance }})"
           description: "A Prometheus job does not have living target anymore.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -28,6 +32,8 @@ groups:
           severity: "P5"
           severity_desc: "Information"
           team: hit-opsgenie
+          HID: "OWPT0103"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656258561"           
         annotations:
           summary: "Prometheus configuration reload failure (instance {{ $labels.instance }})"
           description: "Prometheus configuration reload error\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -38,6 +44,8 @@ groups:
           severity: "P5"
           severity_desc: "Information"
           team: hit-opsgenie
+          HID: "OWPT0104"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656258581"
         annotations:
           summary: "Prometheus too many restarts (instance {{ $labels.instance }})"
           description: "Prometheus has restarted more than twice in the last 15 minutes. It might be crashlooping.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -48,6 +56,8 @@ groups:
           severity: "P5"
           severity_desc: "Information"
           team: hit-opsgenie
+          HID: "OWPT0105"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656225813"
         annotations:
           summary: "Prometheus AlertManager configuration reload failure (instance {{ $labels.instance }})"
           description: "AlertManager configuration reload error\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -57,7 +67,9 @@ groups:
         labels:
           severity: "P4"
           severity_desc: "Low"
-          team: hit-opsgenie        
+          team: hit-opsgenie
+          HID: "OWPT0106"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656258601"          
         annotations:
           summary: "Prometheus AlertManager config not synced (instance {{ $labels.instance }})"
           description: "Configurations of AlertManager cluster instances are out of sync\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -68,6 +80,8 @@ groups:
           severity: "P5"
           severity_desc: "Information"
           team: hit-opsgenie
+          HID: "OWPT0107"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656258621"                  
         annotations:
           summary: "Prometheus AlertManager E2E dead man switch (instance {{ $labels.instance }})"
           description: "Prometheus DeadManSwitch is an always-firing alert. It's used as an end-to-end test of Prometheus through the Alertmanager.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -78,6 +92,8 @@ groups:
           severity: "P4"
           severity_desc: "Low"
           team: hit-opsgenie
+          HID: "OWPT0108"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656258641"                            
         annotations:
           summary: "Prometheus not connected to alertmanager (instance {{ $labels.instance }})"
           description: "Prometheus cannot connect the alertmanager\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
@@ -88,6 +104,8 @@ groups:
           severity: "P5"
           severity_desc: "Information"
           team: hit-opsgenie
+          HID: "OWPT0109"
+          Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656258661"                           
         annotations:
           summary: "Prometheus rule evaluation failures (instance {{ $labels.instance }})"
           description: "Prometheus encountered {{ $value }} rule evaluation failures, leading to potentially ignored alerts.\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
