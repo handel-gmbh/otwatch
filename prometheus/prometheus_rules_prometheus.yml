@@ -79,7 +79,7 @@ groups:
         labels:
           severity: "P5"
           severity_desc: "Information"
-          team: hit-opsgenie
+          team: hit-opsgenie-heartbeat
           HID: "OWPT0107"
           Help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1656258621"                  
         annotations:
