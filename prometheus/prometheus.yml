@@ -3,7 +3,6 @@ global:
   scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
 
-
 alerting:
   alertmanagers:
   - static_configs:
@@ -15,12 +14,14 @@ rule_files:
   # - "second_rules.yml"
   # - "first_rules.yml"
   # - "second_rules.yml"
+  - "prometheus_sbb_cypress_rules.yml"
+  - "prometheus_sbb_metrics.yml"
   - "prometheus_rules_prometheus.yml"
   - "prometheus_rules_otac.yml"
   - "prometheus_rules_otcs.yml"
   - "prometheus_rules_windows.yml"
   - "prometheus_rules_blackbox.yml"
-  - "prometheus_rules_windows_exporter_schedule_tasks.yml"
+  - "prometheus_rules_windows_exporter_schedule_tasks.yml" 
   
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
@@ -30,93 +31,91 @@ scrape_configs:
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
 
-   # static_configs:
-   #- targets: ['<fqdn>:9090']
-    
+#Node Exporter     
+  - job_name: 'node_exporter'
+    scrape_interval: 30s
+    honor_labels: true
+    static_configs:
+    - targets: ['<FQDN>:9100'] 
+      labels:
+        env: "DEVE"     
+    - targets: ['<FQDN>:9100'] 
+      labels:
+        env: "TEST"  
+    - targets: ['<FQDN>:9100'] 
+      labels:
+        env: "INTE"  
+    - targets: ['<FQDN>:9100'] 
+      labels:
+        env: "PROD"  
+        
+#Pushgateway Metrics      
   - job_name: 'pushgateway'
     scrape_interval: 30s
     honor_labels: true
     static_configs:
     - targets: ['<fqdn>:9091']     
   
+#Grafana Metrics  
   - job_name: grafana
-
     scrape_interval: 15s
     scrape_timeout: 5s
-    scheme: 'https'
-
+    scheme: 'http'
     static_configs:
-      - targets: ['<fqdn>:443']
+      - targets: ['localhost:3000']
 
-  - job_name: xecm_dev
+#MSSQLExporter
+  - job_name: 'sql_exporter'
+    scrape_interval: 30s
+    tls_config:
+      insecure_skip_verify: true
+    honor_labels: true
+    static_configs:
+    - targets: ['<fqdn>:9399']
+      labels:
+        env: "DEVE" 
+    - targets: ['<fqdn>:9399']
+      labels:
+        env: "TEST" 
+    - targets: ['<fqdn>:9399']
+      labels:
+        env: "INTE" 
+    - targets: ['<fqdn>:9399']
+      labels:
+        env: "PROD" 
+        
+#Windows Exporter              
+  - job_name: windows_exporter
     static_configs:
       - targets: ['<fqdn>:9182','<fqdn>:9182','<fqdn>:9182','<fqdn>:9182','<fqdn>:9182']
         labels:
-          env: "DEV"      
-  - job_name: xecm_test
-    static_configs:
+          env: "DEV"  
       - targets: ['<fqdn>:9182','<fqdn>:9182','<fqdn>:9182','<fqdn>:9182']
         labels:
-          env: "TEST"       
+          env: "TEST"            
+      - targets: ['<fqdn>:9182','<fqdn>:9182','<fqdn>:9182','<fqdn>:9182']
+        labels:
+          env: "INTE"  
+      - targets: ['<fqdn>:9182','<fqdn>:9182','<fqdn>:9182','<fqdn>:9182']
+        labels:
+          env: "PROD"
+          
 # OpenText Content Server
-# Produktions Server      
-  - job_name: 'OTCS_PROD'
+  - job_name: 'snmp_exporter_otcs'
     scrape_interval: 30s
     static_configs:
       - targets: ['<fqdn>:10102']
         labels:
-          env: "PRD"    
-    metrics_path: /snmp
-    params:
-      module: [LIVELINK-MIB]      
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: <fqdn>:9116  # The SNMP exporter's real hostname:port. 
-# INT Server      
-  - job_name: 'OTCS_INT'
-    scrape_interval: 30s
-    static_configs:
+          env: "PROD"   
       - targets: ['<fqdn>:10103']
         labels:
-          env: "INT"        
-    metrics_path: /snmp
-    params:
-      module: [LIVELINK-MIB]      
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: <fqdn>:9116  # The SNMP exporter's real hostname:port. 
-# TEST Server      
-  - job_name: 'OTCS_TEST'
-    scrape_interval: 30s
-    static_configs:
+          env: "INTE"   
       - targets: ['<fqdn>:10104']
         labels:
-          env: "TEST"        
-    metrics_path: /snmp
-    params:
-      module: [LIVELINK-MIB]      
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: <fqdn>:9116  # The SNMP exporter's real hostname:port.    
-# DEV Server      
-  - job_name: 'OTCS_DEV'
-    scrape_interval: 30s
-    static_configs:
+          env: "TEST"  
       - targets: ['<fqdn>:10105']
         labels:
-          env: "DEV"
+          env: "DEVE"    
     metrics_path: /snmp
     params:
       module: [LIVELINK-MIB]      
@@ -126,14 +125,23 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: <fqdn>:9116  # The SNMP exporter's real hostname:port.            
+        replacement: <fqdn>:9116  # The SNMP exporter's real hostname:port. 
+    
 # OpenText Archive Server 
-# Development Server 
-  - job_name: 'otacdev'
+  - job_name: 'snmp_exporter_otac'
     static_configs:
       - targets: ['<fqdn>:4030']
         labels:
-          env: "DEV" 
+          env: "DEVE"
+      - targets: ['<fqdn>:4030']
+        labels:
+          env: "TEST" 
+      - targets: ['<fqdn>:4030']
+        labels:
+          env: "INTE" 
+      - targets: ['<fqdn>:4030']
+        labels:
+          env: "PROD"                   
     metrics_path: /snmp
     params:
       module: [OTAS]      
@@ -144,56 +152,9 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: <fqdn>:9116  # The SNMP exporter's real hostname:port. 
-# TEST Server 
-  - job_name: 'otactest'
-    static_configs:
-      - targets: ['<fqdn>:4030']
-        labels:
-          env: "TEST"         
-    metrics_path: /snmp
-    params:
-      module: [OTAS]      
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: <fqdn>:9116  # The SNMP exporter's real hostname:port.
-# Integration Server 
-  - job_name: 'otacint'
-    static_configs:
-      - targets: ['<fqdn>:4030']
-        labels:
-          env: "INT"  
-    metrics_path: /snmp
-    params:
-      module: [OTAS]      
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: <fqdn>:9116  # The SNMP exporter's real hostname:port.  
-# Produktiver Server 
-  - job_name: 'otacprd'
-    static_configs:
-      - targets: ['<fqdn>:4030']
-        labels:
-          env: "PRD"  
-    metrics_path: /snmp
-    params:
-      module: [OTAS]      
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: <fqdn>:9116  # The SNMP exporter's real hostname:port.          
+   
 # opentext Archive Server 
-  - job_name: 'otacwww'
+  - job_name: 'blackbox_exporter_otac'
     metrics_path: /probe
     params:
       module: [http_2xx_otac]  # Look for a HTTP 200 response.
@@ -227,7 +188,7 @@ scrape_configs:
         replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
         
 # opentext Directory Server 
-  - job_name: 'otdswww'
+  - job_name: 'blackbox_exporter_otds'
     metrics_path: /probe
     params:
       module: [http_2xx_otds]  # Look for a HTTP 200 response.
@@ -325,7 +286,7 @@ scrape_configs:
         replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
       
 # opentext ECMLink
-  - job_name: 'otelwww'
+  - job_name: 'blackbox_exporter_otel'
     metrics_path: /probe
     params:
       module: [http_2xx_ot-elib]  # Look for a HTTP 200 response.
@@ -423,7 +384,7 @@ scrape_configs:
         replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
         
 # opentext Content Server CWS im Tomcat
-  - job_name: 'otcwswww'
+  - job_name: 'blackbox_exporter_otcw'
     metrics_path: /probe
     params:
       module: [http_2xx_otcws]  # Look for a HTTP 200 response.
@@ -520,186 +481,8 @@ scrape_configs:
       - target_label: __address__
         replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
 
-# opentext opentext Enterprise Library
-  - job_name: 'otelibwww'
-    metrics_path: /probe
-    params:
-      module: [http_2xx_ot-elib]  # Look for a HTTP 200 response.
-    static_configs:
-    # Development
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101LB"
-          env: "DEV"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE01"
-          env: "DEV"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE02"
-          env: "DEV"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"          
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102LB"
-          env: "DEV"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE01"
-          env: "DEV"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE02"
-          env: "DEV"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"          
-    # Testsystem      
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101LB"
-          env: "TEST"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE01"
-          env: "TEST"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE02"
-          env: "TEST"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102LB"
-          env: "TEST"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE01"
-          env: "TEST"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102E02"
-          env: "TEST"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"          
-    # Integration
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101LB"
-          env: "INT"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE01"
-          env: "INT"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE02"
-          env: "INT"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE03"
-          env: "INT"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE04"
-          env: "INT"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102LB"
-          env: "INT"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE01"
-          env: "INT"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE02"
-          env: "INT"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE03"
-          env: "INT"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE04"
-          env: "INT"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-    # Produktion
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101LB"
-          env: "PRD"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE01"
-          env: "PRD"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE02"
-          env: "PRD"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE03"
-          env: "PRD"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/Content']
-        labels:
-          hid: "OTENL0101FE04"
-          env: "PRD"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/742785070"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102LB"
-          env: "PRD"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE01"
-          env: "PRD"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE02"
-          env: "PRD"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE03"
-          env: "PRD"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-      - targets: ['https://<fqdn>:8090/ot-elib/services/EnterpriseLibrary']
-        labels:
-          hid: "OTENL0102FE04"
-          env: "PRD"
-          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/715096115"
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
-
 # Apache Tomcat
-  - job_name: 'aptomcatwww'
+  - job_name: 'blackbox_exporter_tomcat'
     metrics_path: /probe
     params:
       module: [http_2xx_apachetomcat]  # Look for a HTTP 200 response.
