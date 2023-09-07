@@ -76,7 +76,7 @@ receivers:
         update_alerts: true
   - name: heartbeat-receiver
     webhook_configs:
-      - url: 'https://api.eu.opsgenie.com/v2/heartbeats/otwatch_pilatus/ping'
+      - url: 'https://api.eu.opsgenie.com/v2/heartbeats/<projekt>/ping'
         send_resolved: true
         http_config:
           authorization:
