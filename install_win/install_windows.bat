@@ -1,6 +1,6 @@
 echo "Installation Prometheus"
-D:\otx\sw\otwatch\nssm.exe install otwatch_prometheus "E:\otx\prometheus\prometheus.exe"
-D:\otx\sw\otwatch\nssm.exe set otwatch_prometheus AppDirectory "E:\otx\prometheus"
+D:\otx\sw\otwatch\nssm.exe install otwatch_prometheus "D:\otx\sw\otwatch\prometheus\prometheus.exe"
+D:\otx\sw\otwatch\nssm.exe set otwatch_prometheus AppDirectory "D:\otx\sw\otwatch\prometheus"
 D:\otx\sw\otwatch\nssm.exe set otwatch_prometheus AppParameters "--web.enable-admin-api   --web.external-url=https://otwatch.<domain>/prometheus  --web.route-prefix="/prometheus"  --storage.tsdb.retention.time="365d"  --log.level=debug --web.enable-lifecycle"
 D:\otx\sw\otwatch\nssm.exe set otwatch_prometheus DisplayName OTwatch Prometheus
 D:\otx\sw\otwatch\nssm.exe set otwatch_prometheus Description Prometheus database-service for storing monitoring metrics
