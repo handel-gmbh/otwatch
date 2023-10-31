@@ -1,7 +1,10 @@
 global:
   opsgenie_api_url: https://api.eu.opsgenie.com/
   opsgenie_api_key: <key>
-
+  smtp_smarthost: '<mailhost>:25'
+  smtp_from: 'otwatch@<kunden-Domain>'
+  smtp_require_tls: false
+  
 route:
   group_by: ['env']
   group_wait: 1m
@@ -12,25 +15,56 @@ route:
     - match:
         team: hit-opsgenie
         severity: P1
+      continue: true
       receiver: hit_opsgenie_p1
     - match:
         team: hit-opsgenie
+        severity: P1
+      continue: true
+      receiver: team-kunde      
+    - match:
+        team: hit-opsgenie
         severity: P2
-      receiver: hit_opsgenie_p2  
+      continue: true
+      receiver: hit_opsgenie_p2
+    - match:
+        team: hit-opsgenie
+        severity: P2
+      continue: true
+      receiver: team-kunde
     - match:
         team: hit-opsgenie
         severity: P3
-      receiver: hit_opsgenie_p3  
+      continue: true
+      receiver: hit_opsgenie_p3
+    - match:
+        team: hit-opsgenie
+        severity: P3
+      continue: true
+      receiver: team-kunde
     - match:
         team: hit-opsgenie
         severity: P4
-      receiver: hit_opsgenie_p4  
+      continue: true
+      receiver: hit_opsgenie_p4
+    - match:
+        team: hit-opsgenie
+        severity: P4
+      continue: true
+      receiver: team-kunde
     - match:
         team: hit-opsgenie
         severity: P5
-      receiver: hit_opsgenie_p5        
+      continue: true
+      receiver: hit_opsgenie_p5
     - match:
         team: hit-opsgenie
+        severity: P5
+      continue: true
+      receiver: team-kunde
+    - match:
+        team: hit-opsgenie
+      continue: true
       receiver: heartbeat-receiver
 
 receivers:
@@ -82,7 +116,11 @@ receivers:
           authorization:
             type: GenieKey
             credentials: '<key>'
-
+  - name: team-kunde
+    email_configs:
+      - to: '<emfpängeradrese>'
+        send_resolved: true
+        
 inhibit_rules:
   - source_match:
       severity: 'critical'
