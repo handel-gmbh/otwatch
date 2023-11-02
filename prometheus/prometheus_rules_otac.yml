@@ -183,3 +183,16 @@ groups:
         annotations:
           summary: "Archive Server Databse Err VMIG failed (instance {{ $labels.instance }})"
           description: "Archive Server Databse Err VMIG \n  VALUE = {{ $value }}"
+    # Alert für die adm Alert Tabelle      
+      - alert: OTAC-sql_exporter_adm_alert
+        expr: mssql_otac_adm_alert_count != 0
+        for: 0m
+        labels:
+          severity: "P2"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0205
+          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1706262529"  
+        annotations:
+          summary: "Archive Server Databse Adm Alert Table has Error (instance {{ $labels.instance }})"
+          description: "Archive Server Databse Err ADM Alert \n  VALUE = {{ $value }}"
