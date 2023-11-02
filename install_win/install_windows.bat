@@ -38,7 +38,6 @@ D:\otx\sw\otwatch\nssm.exe set otwatch_pushgateway Start SERVICE_AUTO_START
 net start otwatch_pushgateway 
 pause
 
-
 echo "Installation Prometheus Proxy"
 D:\otx\sw\otwatch\nssm.exe install otwatch_proxy "D:\otx\sw\otwatch\nginx\nginx.exe"
 D:\otx\sw\otwatch\nssm.exe set otwatch_proxy AppDirectory "D:\otx\sw\otwatch\nginx"
@@ -48,7 +47,6 @@ D:\otx\sw\otwatch\nssm.exe set otwatch_proxy Start SERVICE_AUTO_START
 net start otwatch_proxy
 pause
 
-
 echo "Installation Prometheus SNMP Exporter"
 D:\otx\sw\otwatch\nssm.exe install otwatch_snmp_exporter "D:\otx\sw\otwatch\prometheus_snmp_exporter\snmp_exporter.exe"
 D:\otx\sw\otwatch\nssm.exe set otwatch_snmp_exporter AppDirectory "D:\otx\sw\otwatch\prometheus_snmp_exporter"
@@ -56,4 +54,14 @@ D:\otx\sw\otwatch\nssm.exe set otwatch_snmp_exporter DisplayName OTwatch SNMP Ex
 D:\otx\sw\otwatch\nssm.exe set otwatch_snmp_exporter Description Prometheus SNMP Exporter-service
 D:\otx\sw\otwatch\nssm.exe set otwatch_snmp_exporter Start SERVICE_AUTO_START
 net start otwatch_snmp_exporter
+pause
+
+echo "Installation Prometheus SQL Exporter"
+D:\otx\sw\otwatch\nssm.exe install otwatch_sql_exporter "D:\otx\sw\otwatch\prometheus_sql_exporter\sql_exporter.exe"
+D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter AppDirectory "D:\otx\sw\otwatch\prometheus_sql_exporter"
+D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter AppParameters "--config.file=D:\otx\sw\otwatch\prometheus_sql_exporter\sql_exporter.yml"
+D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter DisplayName OTwatch SQL Exporter
+D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter Description SQL Exporter -service for Prometheus monitoring
+D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter Start SERVICE_AUTO_START
+net start otwatch_sql_exporter
 pause
