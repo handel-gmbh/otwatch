@@ -627,3 +627,11 @@ scrape_configs:
       - target_label: __address__
         replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.        
         
+#MSSQLExporter
+  - job_name: 'sql_exporter'
+    scrape_interval: 30s
+    tls_config:
+      insecure_skip_verify: true
+    honor_labels: true
+    static_configs:
+    - targets: ['localhost:9399']

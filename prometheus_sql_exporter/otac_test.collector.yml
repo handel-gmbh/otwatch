@@ -1,0 +1,38 @@
+# A collector defining standard metrics for Microsoft SQL Server.
+#
+# It is required that the SQL Server user has the following permissions:
+#
+#   GRANT VIEW ANY DEFINITION TO
+#   GRANT VIEW SERVER STATE TO
+#
+collector_name: mssql_otac_test
+
+# Similar to global.min_interval, but applies to the queries defined by this collector only.
+#min_interval: 0s
+
+metrics:
+  - metric_name: mssql_otac_adm_alert_count
+    type: gauge
+    help: 'Count no Views Erros on each Componet'
+    key_labels:
+      - compname
+    values: [count]
+    query: |
+      SELECT count(*) as count, compname
+      FROM [OTAC_TEST].[dbo].[adm_alert]
+      where Flags = 0 
+      group by compname
+      
+  - metric_name: mssql_otac_ds_job_count
+    type: gauge
+    help: 'Count open DS Job per Pool'
+    key_labels:
+      - poolname
+    values: [count]
+    query: |
+        SELECT count(jobno) as count, poolname
+        FROM [OTAC_TEST].[dbo].[ds_job]
+        group by poolname
+      
+
+      

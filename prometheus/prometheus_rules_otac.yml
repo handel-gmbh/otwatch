@@ -183,3 +183,29 @@ groups:
         annotations:
           summary: "Archive Server Databse Err VMIG failed (instance {{ $labels.instance }})"
           description: "Archive Server Databse Err VMIG \n  VALUE = {{ $value }}"
+    # Alert für die adm Alert Tabelle      
+      - alert: OTAC-sql_exporter_adm_alert
+        expr: mssql_otac_adm_alert_count != 0
+        for: 0m
+        labels:
+          severity: "P2"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0205
+          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1706262529"  
+        annotations:
+          summary: "Archive Server Databse Adm Alert Table has Error (instance {{ $labels.instance }})"
+          description: "Archive Server Databse Err ADM Alert \n  VALUE = {{ $value }}"
+     # Mehr als 10k jobs müssen noch auf den Storage geschrieben werden und das seit 2h.    
+      - alert: OTAC-sql_exporter_ds_job_count
+        expr: mssql_otac_ds_job_count > 10000
+        for: 120m
+        labels:
+          severity: "P2"
+          severity_desc: "High"
+          team: hit-opsgenie
+          HID: OTAC0501
+          help: "https://handel.atlassian.net/wiki/spaces/HITID/pages/1706360833"  
+        annotations:
+          summary: "Archive Server more than 10k Jobs open To write (instance {{ $labels.instance }})"
+          description: "Archive Server \n  VALUE = {{ $value }} Jobs open To write to the Storage"          
