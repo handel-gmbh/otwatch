@@ -61,7 +61,17 @@ D:\otx\sw\otwatch\nssm.exe install otwatch_sql_exporter "D:\otx\sw\otwatch\prome
 D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter AppDirectory "D:\otx\sw\otwatch\prometheus_sql_exporter"
 D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter AppParameters "--config.file=D:\otx\sw\otwatch\prometheus_sql_exporter\sql_exporter.yml"
 D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter DisplayName OTwatch SQL Exporter
-D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter Description SQL Exporter -service for Prometheus monitoring
+D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter Description SQL Exporter service for Prometheus monitoring
 D:\otx\sw\otwatch\nssm.exe set otwatch_sql_exporter Start SERVICE_AUTO_START
 net start otwatch_sql_exporter
+pause
+
+echo "Installation Prometheus Windows Exporter"
+D:\otx\sw\otwatch\nssm.exe install otwatch_windows_exporter "D:\otx\sw\otwatch\prometheus_windows_exporter\windows_exporter.exe"
+D:\otx\sw\otwatch\nssm.exe set otwatch_windows_exporter AppDirectory "D:\otx\sw\otwatch\prometheus_windows_exporter"
+D:\otx\sw\otwatch\nssm.exe set otwatch_windows_exporter AppParameters "--config.file=D:\otx\sw\otwatch\prometheus_windows_exporter\config.yml --web.listen-address=:9183"
+D:\otx\sw\otwatch\nssm.exe set otwatch_windows_exporter DisplayName OTwatch Client
+D:\otx\sw\otwatch\nssm.exe set otwatch_windows_exporter Description Windows Exporter für OTwatch
+D:\otx\sw\otwatch\nssm.exe set otwatch_windows_exporter Start SERVICE_AUTO_START
+net start otwatch_windows_exporter
 pause
