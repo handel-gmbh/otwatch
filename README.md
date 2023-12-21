@@ -40,7 +40,11 @@ Link -  Comming Soon
 ### Oracle Server
 Link -  Comming Soon
 
- 
+# Contribute
+You are more than welcome to give us your feedback.
+We hope to welcome many of your here to use and enhance otwatch Core package.
+
+
 # Copyright (c) 2021, handel gmbh. All rights reserved.
       
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
